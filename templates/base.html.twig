@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Metsena{% endblock %}</title>
+        <link href="{{ asset('css/bootstrap.min.css') }}" type="text/css" rel="stylesheet"/>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+        {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+    </head>
+    <body>
+        <header class="py-3 mb-4 border-bottom" style="background-color: blue">
+            <div class="container d-flex flex-wrap justify-content-center">
+                <a class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-white text-decoration-none" href="{{ path('produits') }}">
+                    <span class="fs-4">Metsena</span>
+                </a>
+
+                <ul class="nav">
+                    <li>
+                        <a href="{{ path('commandes') }}" class="nav-link text-white px-2">Commandes</a>
+                    </li>
+                </ul>
+                <form action="{{ path('search_produit') }}" method="get">
+                    <input type="text" name="query" placeholder="Rechercher...">
+                    <input class="btn btn-sm btn-success" type="submit" value="Rechercher">
+                </form>
+            </div>
+        </header>
+        <main class="container">
+            {% block body %}{% endblock %}
+        </main>
+
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    </body>
+</html>

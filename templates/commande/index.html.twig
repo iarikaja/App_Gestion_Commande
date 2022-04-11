@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+    <!--<a class="btn btn-sm btn-primary mb-4" href="{{ path('create_produit') }}">Ajouter</a>-->
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom Produit</th>
+                <th>Prix Unitaire</th>
+                <th>Quantite</th>
+                <th>Prix Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for element in elements %}
+                <tr>
+                    <td>{{ 1 }}</td>
+                    <th>{{ element.produit.nomProd }}</th>
+                    <th>{{ element.produit.prix }}</th>
+                    <th>{{ element.quantite }}</th>
+                    <th>{{ element.produit.prix * element.quantite }}</th>
+                    <td><a class="btn btn-sm btn-danger" href="{{ path('remove_commande', {'id': element.produit.id}) }}">X</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Total:</th>
+                <th colspan="4">{{ total }}</th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <form action="{{ path('store_commande') }}" method="post">
+        <input type="hidden" value="{{ total }}">
+        <input type="submit" class="btn btn-primary" value="Enregistrer et Imprimer">
+    </form>
+{% endblock %}

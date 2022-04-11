@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{produit.nomProd}}</h1>
+    <img src="{{ asset('uploads/photos/' ~ produit.photo) }}" alt="{{produit.nomProd}}" width="150" height="150"/>
+    <p>{{produit.prix}}</p>
+    <a class="btn btn-sm btn-outline-success" href="{{ path('update_produit', {'id': produit.id}) }}">Modifier</a>
+    <a class="btn btn-sm btn-outline-danger" href="{{ path('delete_produit', {'id': produit.id}) }}">Supprimer</a>
+{% endblock %}
